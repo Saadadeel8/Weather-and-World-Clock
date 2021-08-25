@@ -4,9 +4,11 @@ import axios from 'axios'
 
  
 function Weather() {
+  console.log(process.env.REACT_APP_WEATHER_API_KEY)
 const [weatherData, changeWeatherData] = useState(null)
 const [data, changeData] = useState(null)
 const { Search } = Input;
+const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
 
 const renderContent = (value, row, index) => {
   const obj = {
@@ -50,7 +52,7 @@ const columns = [
   
 const onSearch = (cityName) => {
   
-    axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=3568c98ffdb29da5572a335e46ae736b`)
+    axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${API_KEY}`)
     .then(res => {
         changeWeatherData(res.data);
         changeData([
